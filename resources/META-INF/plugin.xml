@@ -1,0 +1,25 @@
+<idea-plugin>
+    <id>com.fmotech.smartfolding</id>
+    <name>Smart Java Folding</name>
+    <version>1.0</version>
+    <vendor email="support@fmotech.com" url="http://www.fmotech.com">FmoTech</vendor>
+
+    <description>
+        Collapse variable declarations.
+        Hide final keyword in method parameters
+    </description>
+
+    <change-notes/>
+
+    <idea-version since-build="145.0"/>
+
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.foldingBuilder language="JAVA" implementationClass="com.fmotech.idea.smartfolding.InferredVariables"/>
+        <lang.foldingBuilder language="JAVA" implementationClass="com.fmotech.idea.smartfolding.MethodParameters"/>
+    </extensions>
+
+    <actions />
+
+</idea-plugin>
