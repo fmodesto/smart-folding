@@ -93,7 +93,7 @@ public class MethodParameters extends SmartFoldingBuilder {
             int startOffset = startText + matcher.start();
             // Dirty fix to avoid collapsing elements which might collapse with 'var'
             int endOffset = startText + matcher.end() - 1;
-            descriptors.add(new NamedFoldingDescriptor(method, startOffset, endOffset, group, " "));
+            descriptors.add(new NamedFoldingDescriptor(parameters, startOffset, endOffset, group, " "));
         }
         return descriptors.stream();
     }
