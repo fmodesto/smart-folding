@@ -16,9 +16,7 @@
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <lang.foldingBuilder language="JAVA" implementationClass="com.fmotech.idea.smartfolding.InferredVariables"/>
-        <lang.foldingBuilder language="JAVA" implementationClass="com.fmotech.idea.smartfolding.MethodParameters"/>
-        <lang.foldingBuilder language="JAVA" implementationClass="com.fmotech.idea.smartfolding.FullyQualifiedNames"/>
+        <lang.foldingBuilder language="JAVA" implementationClass="com.fmotech.idea.smartfolding.SmartFoldingBuilder"/>
     </extensions>
 
     <actions />
