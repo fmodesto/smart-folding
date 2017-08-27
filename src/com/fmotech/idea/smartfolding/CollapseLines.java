@@ -10,6 +10,7 @@ import com.intellij.psi.PsiParameterList;
 import com.intellij.psi.PsiStatement;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.codeStyle.CodeStyleSettingsManager;
+import com.twelvemonkeys.lang.StringUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class CollapseLines {
     private Stream<NamedFoldingDescriptor> processNewLines(
             PsiElement element, List<NamedFoldingDescriptor> foldings, Document document) {
         String text = document.getText(element.getTextRange());
-        if (!containsLineBreak(text))
+        if (!containsLineBreak(text) || StringUtil.contains(text, '}'))
             return foldings.stream();
 
         int diffSize = foldings.stream()
@@ -60,7 +61,8 @@ public class CollapseLines {
                 .sum();
 
         final CodeStyleSettings settings = CodeStyleSettingsManager.getSettings(element.getProject());
-        if (text.length() - diffSize > settings.getRightMargin(JavaLanguage.INSTANCE))
+        String shortText = text.replaceAll(NEW_LINES, " ");
+        if (shortText.length() - diffSize > settings.getRightMargin(JavaLanguage.INSTANCE))
             return foldings.stream();
 
         Matcher matcher = NEW_LINES_PATTERN.matcher(text);
